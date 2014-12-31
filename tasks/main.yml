@@ -1,0 +1,4 @@
+---
+
+- include: dell.yml
+  when: ansible_system_vendor in [ 'Dell Inc.' ]

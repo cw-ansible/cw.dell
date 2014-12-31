@@ -1,0 +1,22 @@
+---
+
+# See http://linux.dell.com/repo/community/deb/latest/
+- name: add Dell apt-key
+  apt_key: keyserver=pool.sks-keyservers.net id=1285491434D8786F
+  
+- name: Add dell repository
+  apt_repository:
+    repo: 'deb {{ dell_repository }} /'
+    update_cache: yes
+
+- name: install Dell utils
+  apt:
+    pkg='{{item}}'
+    install_recommends=no
+    force=yes update_cache=yes
+    cache_valid_time=3600
+  with_items:
+    - srvadmin-base
+    - srvadmin-omcommon
+
+  
